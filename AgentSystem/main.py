@@ -7,6 +7,9 @@ from tools.context_manager import ContextManager
 from tools.stt_tts import Converter
 from agents import Agent, Runner, WebSearchTool
 import re
+from typing import Union
+import os
+
 
 class HandoffAgentSystem:
     def __init__(self, debug_time: bool = False):
@@ -29,45 +32,49 @@ class HandoffAgentSystem:
             tools=[WebSearchTool()]
         )
 
-    async def run(self):
-        print("Handoff Agent gestartet. Du kannst jederzeit mit 'exit' beenden.")
+    async def run(self, audio_input: Union[str, bytes]):
         self.timestamps["start"] = time.time()
-
+        audio_input, temp_path = self.prepare_audio_input(audio_input)
         try:
-            #user_input = self.speech_to_text()
-            user_input = input("")
+            user_input = self.speech_to_text(audio_input)
+            #user_input = input("")
 
             if user_input.lower() in ["exit", "quit"]:
                 print("Handoff Agent beendet. Bis bald!")
                 return
-            
-            response = await self.runAsisstant(user_input)
+                
+            response = await self.run_assistant(user_input)
             print(f"Ergebnis: {response}")
 
             cleaned_response = self.clean_for_tts(response)
-            self.text_to_speech(cleaned_response)
+            audio_response = self.text_to_speech(cleaned_response)
 
             self.update_context(user_input, response)
             self.timestamps["end"] = time.time()
 
             if self.debug_time:
                 self.print_debug_times()
+            if temp_path and os.path.exists(temp_path):
+                os.remove(temp_path)
+            return audio_response
 
         except Exception as e:
             print(f"Fehler während der Agentenausführung: {e}")
+            return None
 
-    def speech_to_text(self):
+    def speech_to_text(self, audio_input):
         self.timestamps["stt_start"] = time.time()
-        user_input = str(self.converter.speech_to_text("test_audio.wav")) #AUDIO
+        user_input = str(self.converter.speech_to_text(audio_input)) #AUDIO
         self.timestamps["stt_end"] = time.time()
         return user_input
     
     def text_to_speech(self, cleaned_response):
         self.timestamps["tts_start"] = time.time()
-        self.converter.text_to_speech(cleaned_response)
+        audio_response = self.converter.text_to_speech(cleaned_response)
         self.timestamps["tts_end"] = time.time()
+        return audio_response
 
-    async def runAsisstant(self, user_input):
+    async def run_assistant(self, user_input):
         context_summary = self.context_manager.get_context_summary()
         full_input = f"History: {context_summary}\n\nNew Input: {user_input}"
 
@@ -85,7 +92,7 @@ class HandoffAgentSystem:
         def duration(label, start, end):
             return f"{label:<20} → {timedelta(seconds=self.timestamps[end] - self.timestamps[start])}"
 
-        #print(duration("Speech-to-Text", "stt_start", "stt_end"))
+        print(duration("Speech-to-Text", "stt_start", "stt_end"))
         print(duration("Agentenlauf", "agent_start", "agent_end"))
         print(duration("Text-to-Speech", "tts_start", "tts_end"))
 
@@ -101,9 +108,23 @@ class HandoffAgentSystem:
         text = re.sub(r"\([^)]*\)", "", text)                  # Inhalte in Klammern (Quellen)
         text = re.sub(r"\s+", " ", text)                       # Mehrfache Leerzeichen
         return text.strip()
+    
+    def prepare_audio_input(self, audio_input: Union[str, bytes]) -> tuple[str, Union[str, None]]:
+        """
+        Wandelt Bytes in eine temporäre Datei um und gibt den Pfad zurück.
+        Gibt außerdem den temporären Pfad zurück, damit er ggf. gelöscht werden kann.
+        """
+        if isinstance(audio_input, bytes):
+            temp_path = "temp_input.wav"
+            with open(temp_path, "wb") as f:
+                f.write(audio_input)
+            return temp_path, temp_path
+        else:
+            return audio_input, None
+
 
 
 # Starte die asynchrone Schleife
 if __name__ == "__main__":
     agent_system = HandoffAgentSystem(debug_time=True)
-    asyncio.run(agent_system.run())
+    asyncio.run(agent_system.run("test_audio.wav"))

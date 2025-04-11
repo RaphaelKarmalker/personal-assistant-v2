@@ -39,8 +39,10 @@ class Converter:
             with open(output_file, "wb") as out:
                 out.write(response.audio_content)
                 print(f"✅ TTS: Audio gespeichert als: {output_file}")
+            return response.audio_content  # <== hier: Bytes zurückgeben!^
         except Exception as e:
             print("❌ TTS-Fehler:", str(e))
+            return None
 
     def speech_to_text(self, audio_file: str, sample_rate: int = 16000):
         if not self.stt_client:
