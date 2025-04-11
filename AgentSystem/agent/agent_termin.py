@@ -13,7 +13,7 @@ context_manager = ContextManager()
 @function_tool
 def create_final_event(event: EventDetails) -> str:
     """
-    Erstellt ein neues Ereignis im Google Kalender.
+    Erstellt ein neues Ereignis im Google Kalender. Darauf achten das aktuelle Datum als Referenz zu verwenden!
     """
     return event_manager.create_final_event(event)
 
@@ -64,7 +64,8 @@ def get_current_time(format: Optional[str] = None) -> str:
 
 appointment_agent = Agent(
     name="Termin Agent",
-    instructions="Agent zur Erstellung, Auflistung, Änderung und Löschung von Terminen." "Achte auf die Verwendung des aktuellen Datums bei Terminen.",
+    instructions="Agent zur Erstellung, Auflistung, Änderung und Löschung von Terminen." 
+            "Achte auf die Verwendung des aktuellen Datums bei Terminen.",             
     handoff_description="Agent for handling appointments and reminders.",
     tools=[create_final_event, modify_existing_event, delete_event, list_events, get_current_time],
     model="gpt-4o"

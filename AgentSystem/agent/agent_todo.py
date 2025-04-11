@@ -82,7 +82,8 @@ def get_current_time(format: Optional[str] = None) -> str:
 todo_agent = Agent(
     name="ToDo Agent",
     handoff_description="Agent for handling toDo.",
-    instructions="Agent zur Erstellung, Auflistung, Änderung und Löschung von ToDos und Aufgabenlisten. Achte auf die Verwendung des aktuellen Datums bei Aufgaben.",
+    instructions="Agent zur Erstellung, Auflistung, Änderung und Löschung von ToDos und Aufgabenlisten. Achte auf die Verwendung des aktuellen Datums bei Aufgaben." 
+                "Antworte möglichst kurz",
     tools=[create_todo, modify_todo, delete_todo, list_todos, create_tasklist, delete_tasklist, list_tasklists, get_current_time],
     model="gpt-4o"
 )

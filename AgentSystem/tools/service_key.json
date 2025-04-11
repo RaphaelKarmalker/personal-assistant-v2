@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "e-charger-456017-g1",
+  "private_key_id": "e4259c19ef45548c83c01bff6668332bf6c5985a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDD773uYfvR3gsR\npI7FZL/EtlKTYbgGEU5qKleubgExz7WDqVPcIIhYop8KFcOnyJB9RoMqpWFedtDo\npIJUGTPhQP68xAFBNbP722LLDwPSDvxzspwm+Z4nmei38nFg/r93ew+87MBgfCKX\nIrOemzvG2mGZOw0++arnH1tM4lzYYfqVhBtEYRcEWxRN6FfyF+0cyM00Gmi+u4ro\nXey7xR5EMV4o+uhPUjrd/BOW+23F6WtZY7CdYSlddRsMQV3rNiA3A1YsDzqufp2H\nEUKKBM5DTNb+liJfaeDWIv4uMGWhk/IhHuPI+4AGeEddj5dn+9UsEcAwi8UGP4qX\nflFNXK11AgMBAAECggEABrS22GjMGJOz50ethz36fj4LN3YZuUNwXpvSYmrraYwF\nV1s9PoRyhi4SqWKzTpPDtjXqmVQNsBD692th9oTiTKxPy6AdtuCip1UL3Y1HATJ4\nG3GafI8AhbRzzY/jp4EwhmNU1492yhaVjHyojx4a/qRMwNTPkD81RTHCizAYI2Ov\noXq/K96e390N59DoAP8suph1DOmqjn3IAlRzZQ11bL6AfzNN6XEFnRuA4CvWt07j\nH2dInL7vE0mbfB8xvxVQ374zYYznEUJFGCAtkleRUrwH4I1Gx3+jfe2HeDpQNWk8\na2DQdmVDA9J87m8izRUzX9EzqN48Y4IlLfNHucY7JQKBgQD8xa1uVpAMGO1GTGZH\nZmsB3ivTxAp+Rv30iADIxL2W8YiyYJ9jtvFgUPQUUQg4OsNcz/zJI4ZLKOK5Tzf+\nUOGNp8wbDWJy9ZELfwtEr0hD9DwiOnhT+xVKlPtlHQtjI7Uz/BTskmqXI1jJomkP\nlFPhRu2zo1Kg8L0cAh96E15IkwKBgQDGcEQrNCVqgfpxWEVAm0qRVYhbUk5LAZMS\np4e+VErtOGqrXC6mosWgcUiZKVXVMtrof0/Y+k5kDtR9niSqjnQT+rhqSPxf19HL\nvMdeAlMepabVzFEDmn7uaiA/gBtCNZK/5pTiMFH5xO89th74kKjtgGjuTGhc1lVF\nXuBrIvGe1wKBgCa7O3neta/E2gadikaCgP8GRfzq2xjCVAN2G3in/Mz2MZXzjDjB\nPXcesGe0iufiyTCdhgRj9x3pI+R1KQVE62rDPVkf0ef/jLwQOW/K0+3lrJkqEGn9\n3SNSdLrnmmkUfZ17kNE3FjIWbnJm+mYyui+YqK+P5QdYHAIAqUYRVa8VAoGARbIk\nny//fDsOpUSlfh2MwSLTc4+i5AE3kLO6n4SnlE3eWTVVRT2iP8nJ/9FezjTAYixk\n9QZlBguXYk9q/WRvLJ1ArEPaMCdzDiXNuB0E6JyxziGmyqc2sbIghW0PJd//HNt1\nq0PhZuJeTMRseE0Gp/QT5q57cS/uXyEFnVt2lZ0CgYEAsC0okg7o1k9vnNYmKJXq\nhNNkpOyFJLKbugIxdUAO9xvONDSDrsN0wi/mGiD3rN6iEkDUWy64FkPhyRPBS/JF\ndTOWlPsXYtz6yPgsrDJ/9vFaIk4Lpku87aD0zq5UqcUui+lyAmKUNVBPsuMau1d1\nMv5f+56pHXhm3aYhmhBTVN8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "personal-asisstant-tts-stt@e-charger-456017-g1.iam.gserviceaccount.com",
+  "client_id": "100920219910813528760",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/personal-asisstant-tts-stt%40e-charger-456017-g1.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
