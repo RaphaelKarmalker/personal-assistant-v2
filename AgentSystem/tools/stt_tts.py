@@ -13,7 +13,7 @@ class Converter:
         if not self.stt_client:
             print("⚠️ STT-Authentifizierung fehlgeschlagen.")
 
-    def text_to_speech(self, text: str, output_file: str = "output.mp3", voice_name="de-DE-Chirp3-HD-Leda"): # Alternative de-DE-Wavenet-H for faster
+    def text_to_speech(self, text: str, output_file: str = "output.mp3", voice_name="de-DE-Wavenet-H"): # Alternative de-DE-Chirp3-HD-Leda for female
         if not self.tts_client:
             return
 
