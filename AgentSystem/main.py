@@ -36,8 +36,8 @@ class HandoffAgentSystem:
         self.timestamps["start"] = time.time()
         audio_input, temp_path = self.prepare_audio_input(audio_input)
         try:
-            user_input = self.speech_to_text(audio_input)
-            #user_input = input("")
+            #user_input = self.speech_to_text(audio_input)
+            user_input = input("")
 
             if user_input.lower() in ["exit", "quit"]:
                 print("Handoff Agent beendet. Bis bald!")
@@ -99,16 +99,18 @@ class HandoffAgentSystem:
         total_time = self.timestamps["end"] - self.timestamps["start"]
         print(f"\n🕒 Gesamtdauer: {timedelta(seconds=total_time)}")
     
-    
+
     def clean_for_tts(self, text):
-        # Entferne Markdown, Bulletpoints, Links
-        text = re.sub(r"\*\*|__|\*", "", text)                 # Markdown-Fett
-        text = re.sub(r"\n\s*[-•]\s*", " ", text)              # Listenpunkte
-        text = re.sub(r"https?://\S+", "", text)               # Links
-        text = re.sub(r"\([^)]*\)", "", text)                  # Inhalte in Klammern (Quellen)
-        text = re.sub(r"\s+", " ", text)                       # Mehrfache Leerzeichen
+        # Ersetze jeden ganzen Satz, der einen https-Link enthält, durch "Auftrag erledigt!"
+        text = re.sub(r"[^.!?]*https?://[^\s\)]+[^.!?]*[.!?]", " Auftrag erledigt!", text)
+
+        # Entferne Markdown, Bulletpoints, Klammern etc.
+        text = re.sub(r"\*\*|__|\*", "", text)                    # Markdown-Fett
+        text = re.sub(r"\n\s*[-•]\s*", " ", text)                 # Listenpunkte
+        text = re.sub(r"\([^)]*\)", "", text)                     # Inhalte in Klammern
+        text = re.sub(r"\s+", " ", text)                          # Mehrfache Leerzeichen
         return text.strip()
-    
+
     def prepare_audio_input(self, audio_input: Union[str, bytes]) -> tuple[str, Union[str, None]]:
         """
         Wandelt Bytes in eine temporäre Datei um und gibt den Pfad zurück.
