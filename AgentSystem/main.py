@@ -36,8 +36,8 @@ class HandoffAgentSystem:
         self.timestamps["start"] = time.time()
         audio_input, temp_path = self.prepare_audio_input(audio_input)
         try:
-            #user_input = self.speech_to_text(audio_input)
-            user_input = input("")
+            user_input = self.speech_to_text(audio_input)
+            #user_input = input("")
 
             if user_input.lower() in ["exit", "quit"]:
                 print("Handoff Agent beendet. Bis bald!")
