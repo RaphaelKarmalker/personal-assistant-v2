@@ -114,10 +114,6 @@ The iOS app connects to the Python backend via WebSocket, enabling real-time voi
 
 ### System Pipeline
 
-<div align="center">
-<img src="archiv/pictures/pipeline.png" alt="Pipeline Architecture" width="700">
-</div>
-
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                      CLIENT LAYER                                │
