@@ -56,15 +56,13 @@ Lyra is an enterprise-ready AI assistant platform that leverages a sophisticated
 
 The system seamlessly integrates voice-to-voice interaction with Google Calendar and Google Tasks, enabling users to manage their schedules and to-do lists through natural conversation.
 
+<div align="center">
+<img src="archiv/pictures/zwischen_banner_2.png" alt="" width="700">
+</div>
+
 ---
 
 ## Features
-
-<div align="center">
-<img src="archiv/pictures/zwischen_banner.png" alt="" width="700">
-</div>
-
-<br>
 
 ### Core Capabilities
 
@@ -158,7 +156,7 @@ The iOS app connects to the Python backend via WebSocket, enabling real-time voi
 ---
 
 <div align="center">
-<img src="archiv/pictures/zwischen_banner_2.png" alt="" width="700">
+<img src="archiv/pictures/zwischen_banner.png" alt="" width="700">
 </div>
 
 ---
@@ -333,21 +331,7 @@ Feedback and contributions are always welcome—this is just the beginning.
 
 ---
 
-## Use Cases
-
-<div align="center">
-<img src="archiv/pictures/UseCase_2.png" alt="Use Case" width="500">
-</div>
-
----
-
 ## Roadmap
-
-<div align="center">
-<img src="archiv/pictures/future_roadmap.png" alt="Future Roadmap" width="700">
-</div>
-
-<br>
 
 - [ ] Multi-language support (English, French, Spanish)
 - [ ] Integration with Microsoft 365 (Outlook, To Do)
