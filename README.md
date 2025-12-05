@@ -272,7 +272,7 @@ python -m agent.agent_todo
 
 | Function | Description |
 |----------|-------------|
-| `create_final_event(event: EventDetails)` | Creates a new calendar event |
+| `create_final_event(event: EventDetails)` | Creates new calendar event |
 | `modify_existing_event(params: ModifyEventParams)` | Updates an existing event |
 | `delete_event(params: DeleteEventParams)` | Removes an event by search criteria |
 | `list_events(params: EventListParams)` | Retrieves events within a time range |
