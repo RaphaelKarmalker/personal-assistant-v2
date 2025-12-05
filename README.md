@@ -36,10 +36,6 @@ Back when I started this project, LLMs had no reliable voice integration. OpenAI
 
 But I had a simple wish: **What if I had a personal assistant that could manage my life while I'm on the go?**
 
-<div align="center">
-<img src="archiv/pictures/UseCase.png" alt="The Vision" width="500">
-</div>
-
 Picture this: You're walking to your next meeting, hands full, and you remember you need to reschedule tomorrow's appointment and add something to your grocery list. Pulling out your phone, unlocking it, opening multiple apps—it breaks your flow. I wanted something better.
 
 I envisioned an AI that feels like talking to an actual assistant. One that understands context, remembers our conversation, and takes real action—creating calendar events, managing tasks, looking things up—all through natural speech.
