@@ -56,6 +56,12 @@ The system seamlessly integrates voice-to-voice interaction with Google Calendar
 
 ## Features
 
+<div align="center">
+<img src="archiv/pictures/zwischen_banner.png" alt="" width="700">
+</div>
+
+<br>
+
 ### Core Capabilities
 
 - **Multi-Agent Orchestration**: Intelligent coordinator agent that dynamically delegates tasks to specialized sub-agents based on intent classification
@@ -80,17 +86,23 @@ The system seamlessly integrates voice-to-voice interaction with Google Calendar
 
 ## Architecture
 
+### Frontend Design Philosophy
+
+The iOS companion app was designed with a clear focus on **simplicity and usability**. When you're on the go, you don't want to navigate complex menus or tap through multiple screens just to set a reminder.
+
+The interface follows a single-screen paradigm: one prominent button to start voice input, and a clean conversation view showing the interaction history. The dark theme reduces eye strain and battery consumption, while the minimal UI ensures zero learning curve.
+
+Key design decisions:
+- **Single-tap interaction**: Press once to speak, release to send
+- **Ambient visual feedback**: Subtle animations indicate listening and processing states
+- **Conversation-first layout**: Focus on the dialogue, not on controls
+- **Native iOS aesthetics**: Follows Human Interface Guidelines for familiar UX
+
 <div align="center">
-<img src="archiv/pictures/zwischen_banner.png" alt="" width="700">
-</div>
 
-<br>
-
-<div align="center">
-
-| iOS Companion App | | |
-|:-----------------:|:-----------------:|:-----------------:|
-| <img src="archiv/pictures/3d_Swift_design.png" alt="Swift 3D Design" width="220"> | <img src="archiv/pictures/3d_swift_design_2.png" alt="Swift 3D Design 2" width="220"> | <img src="archiv/pictures/Swift_design.jpg" alt="Swift Design" width="220"> |
+| Home Screen | Conversation View | Voice Input |
+|:-----------:|:-----------------:|:-----------:|
+| <img src="archiv/pictures/3d_Swift_design.png" alt="Home Screen" width="220"> | <img src="archiv/pictures/3d_swift_design_2.png" alt="Conversation View" width="220"> | <img src="archiv/pictures/Swift_design.jpg" alt="Voice Input" width="220"> |
 
 </div>
 
