@@ -3,7 +3,7 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="archiv/pictures/banner_new_white.png">
+  <source media="(prefers-color-scheme: dark)" srcset="archiv/pictures/banner_new_white_.png">
   <source media="(prefers-color-scheme: light)" srcset="archiv/pictures/new_banner_dark.png">
   <img alt="Lyra Banner" src="archiv/pictures/new_banner_dark.png" width="800">
 </picture>
@@ -36,13 +36,13 @@ Back when I started this project, LLMs had no reliable voice integration. OpenAI
 
 But I had a simple wish: **What if I had a personal assistant that could manage my life while I'm on the go?**
 
-Picture this: You're walking to your next meeting, hands full, and you remember you need to reschedule tomorrow's appointment and add something to your grocery list. Pulling out your phone, unlocking it, opening multiple apps—it breaks your flow. I wanted something better.
+Picture this: You're walking to your next meeting, hands full, and you remember you need to reschedule tomorrow's appointment and add something to your grocery list. Pulling out your phone, unlocking it, opening multiple apps - it breaks your flow. I wanted something better.
 
-I envisioned an AI that feels like talking to an actual assistant. One that understands context, remembers our conversation, and takes real action—creating calendar events, managing tasks, looking things up—all through natural speech.
+I envisioned an AI that feels like talking to an actual assistant. One that understands context, remembers our conversation, and takes real action - creating calendar events, managing tasks, looking things up - all through natural speech.
 
 **That vision became Lyra.**
 
-What started as a weekend experiment evolved into a full-fledged multi-agent system. The name "Lyra" comes from the constellation—a guide in the night sky, just as this assistant guides through daily chaos.
+What started as a weekend experiment evolved into a full-fledged multi-agent system. The name "Lyra" comes from the constellation - a guide in the night sky, just as this assistant guides through daily chaos.
 
 ---
 
@@ -53,7 +53,7 @@ Lyra is an enterprise-ready AI assistant platform that leverages a sophisticated
 The system seamlessly integrates voice-to-voice interaction with Google Calendar and Google Tasks, enabling users to manage their schedules and to-do lists through natural conversation.
 
 <div align="center">
-<img src="archiv/pictures/zwischen_banner_2.png" alt="" width="700">
+<img src="archiv/pictures/zwischen_banner_2_.png" alt="" width="700">
 </div>
 
 ---
@@ -144,7 +144,7 @@ The iOS app connects to the Python backend via WebSocket, enabling real-time voi
 
 ### Design Principles
 
-1. **Separation of Concerns**: Each module handles a single responsibility—authentication, event management, task management, and speech processing are completely decoupled
+1. **Separation of Concerns**: Each module handles a single responsibility - authentication, event management, task management, and speech processing are completely decoupled
 2. **Dependency Injection**: Services are instantiated and injected at runtime, enabling easy testing and configuration
 3. **Async-First Design**: Built on Python's asyncio for non-blocking I/O operations throughout the entire pipeline
 4. **Graceful Degradation**: System components fail independently without bringing down the entire service
@@ -305,13 +305,13 @@ python -m agent.agent_todo
 Lyra has been tested by friends and family in real-world scenarios. Their feedback has been invaluable in shaping the project:
 
 > *"I used it for a week to manage my university schedule. Being able to just say 'move my meeting to Thursday' while walking to class was a game changer."*
-> — **Friend, Computer Science Student**
+> - **Friend, Computer Science Student**
 
 > *"The voice recognition is surprisingly accurate, even with background noise. I tested it during my commute and it handled everything I threw at it."*
-> — **Beta Tester**
+> - **Beta Tester**
 
 > *"It feels natural. I stopped thinking of it as an app and started treating it like an actual assistant. That says a lot."*
-> — **Early User**
+> - **Early User**
 
 ### Room to Grow
 
@@ -323,7 +323,7 @@ This is an evolving project with significant development opportunities ahead:
 - Integration with additional productivity platforms
 - Improved latency optimization for mobile networks
 
-Feedback and contributions are always welcome—this is just the beginning.
+Feedback and contributions are always welcome - this is just the beginning.
 
 ---
 
@@ -389,7 +389,6 @@ Never commit credentials to version control. All sensitive files are listed in `
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="archiv/pictures/banner_new_white.png">
   <source media="(prefers-color-scheme: light)" srcset="archiv/pictures/new_banner_dark.png">
   <img alt="Lyra Banner" src="archiv/pictures/new_banner_dark.png" width="600">
 </picture>
