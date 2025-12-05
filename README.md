@@ -3,12 +3,12 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="archiv/pictures/lyra_logo_white.png">
-  <source media="(prefers-color-scheme: light)" srcset="archiv/pictures/lyra_logo_dark.png">
-  <img alt="Lyra Logo" src="archiv/pictures/lyra_logo_dark.png" width="200">
+  <source media="(prefers-color-scheme: dark)" srcset="archiv/pictures/banner_new_white.png">
+  <source media="(prefers-color-scheme: light)" srcset="archiv/pictures/new_banner_dark.png">
+  <img alt="Lyra Banner" src="archiv/pictures/new_banner_dark.png" width="800">
 </picture>
 
-<br><br>
+<br>
 
 ![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.10+-brightgreen.svg)
@@ -81,14 +81,26 @@ The system seamlessly integrates voice-to-voice interaction with Google Calendar
 ## Architecture
 
 <div align="center">
+<img src="archiv/pictures/zwischen_banner.png" alt="" width="700">
+</div>
 
-| Backend Architecture | iOS Companion App |
-|:-------------------:|:-----------------:|
-| *See diagram below* | <img src="archiv/pictures/Swift_design.jpg" alt="Swift iOS App" width="150"> |
+<br>
+
+<div align="center">
+
+| iOS Companion App | | |
+|:-----------------:|:-----------------:|:-----------------:|
+| <img src="archiv/pictures/3d_Swift_design.png" alt="Swift 3D Design" width="220"> | <img src="archiv/pictures/3d_swift_design_2.png" alt="Swift 3D Design 2" width="220"> | <img src="archiv/pictures/Swift_design.jpg" alt="Swift Design" width="220"> |
 
 </div>
 
 The iOS app connects to the Python backend via WebSocket, enabling real-time voice streaming. The Swift codebase is available upon request for collaboration or review purposes.
+
+### System Pipeline
+
+<div align="center">
+<img src="archiv/pictures/pipeline.png" alt="Pipeline Architecture" width="700">
+</div>
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -130,6 +142,12 @@ The iOS app connects to the Python backend via WebSocket, enabling real-time voi
 2. **Dependency Injection**: Services are instantiated and injected at runtime, enabling easy testing and configuration
 3. **Async-First Design**: Built on Python's asyncio for non-blocking I/O operations throughout the entire pipeline
 4. **Graceful Degradation**: System components fail independently without bringing down the entire service
+
+---
+
+<div align="center">
+<img src="archiv/pictures/zwischen_banner_2.png" alt="" width="700">
+</div>
 
 ---
 
@@ -276,23 +294,52 @@ python -m agent.agent_todo
 
 ---
 
-## What Users Are Saying
+## Early Feedback
 
-> *"Lyra has completely transformed how I manage my daily schedule. The voice interface feels incredibly natural, and the calendar integration is seamless. I can't imagine going back to manual scheduling."*
-> — **Marcus W.**, Product Manager
+Lyra has been tested by friends and family in real-world scenarios. Their feedback has been invaluable in shaping the project:
 
-> *"As a developer, I'm impressed by the architecture. The multi-agent approach is elegant and the codebase is exceptionally well-organized. This is production-quality software."*
-> — **Sarah K.**, Senior Software Engineer
+> *"I used it for a week to manage my university schedule. Being able to just say 'move my meeting to Thursday' while walking to class was a game changer."*
+> — **Friend, Computer Science Student**
 
-> *"The context awareness is remarkable. I can have flowing conversations about my tasks without repeating myself. It genuinely feels like talking to an intelligent assistant."*
-> — **David L.**, Entrepreneur
+> *"The voice recognition is surprisingly accurate, even with background noise. I tested it during my commute and it handled everything I threw at it."*
+> — **Beta Tester**
 
-> *"We evaluated several AI assistant solutions for our team. Lyra stood out for its clean API design and extensibility. The WebSocket implementation handles concurrent users flawlessly."*
-> — **Tech Lead**, Fortune 500 Company
+> *"It feels natural. I stopped thinking of it as an app and started treating it like an actual assistant. That says a lot."*
+> — **Early User**
+
+### Room to Grow
+
+This is an evolving project with significant development opportunities ahead:
+
+- Enhanced error handling and edge case coverage
+- Expanded language support beyond German
+- Refined context management for longer conversations
+- Integration with additional productivity platforms
+- Improved latency optimization for mobile networks
+
+Feedback and contributions are always welcome—this is just the beginning.
+
+---
+
+## Use Cases
+
+<div align="center">
+
+| | |
+|:-:|:-:|
+| <img src="archiv/pictures/UseCase.png" alt="Use Case 1" width="400"> | <img src="archiv/pictures/UseCase_2.png" alt="Use Case 2" width="400"> |
+
+</div>
 
 ---
 
 ## Roadmap
+
+<div align="center">
+<img src="archiv/pictures/future_roadmap.png" alt="Future Roadmap" width="700">
+</div>
+
+<br>
 
 - [ ] Multi-language support (English, French, Spanish)
 - [ ] Integration with Microsoft 365 (Outlook, To Do)
@@ -352,6 +399,14 @@ Never commit credentials to version control. All sensitive files are listed in `
 ---
 
 <div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="archiv/pictures/banner_new_white.png">
+  <source media="(prefers-color-scheme: light)" srcset="archiv/pictures/new_banner_dark.png">
+  <img alt="Lyra Banner" src="archiv/pictures/new_banner_dark.png" width="600">
+</picture>
+
+<br><br>
 
 **Built with precision. Engineered for the future.**
 
