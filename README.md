@@ -26,6 +26,24 @@
 
 > **Security Notice**: API keys, OAuth credentials, service account files, and authentication tokens are explicitly excluded from this repository for security reasons. You must provide your own credentials as described in the [Installation](#installation) section.
 
+> **Note**: This repository contains the **backend infrastructure** only. The Swift-based iOS companion app is developed separately and available upon request.
+
+---
+
+## The Story Behind Lyra
+
+Back when I started this project, LLMs had no reliable voice integration. OpenAI's real-time API didn't exist yet, and the idea of having a natural conversation with an AI felt like science fiction.
+
+But I had a simple wish: **What if I had a personal assistant that could manage my life while I'm on the go?**
+
+Picture this: You're walking to your next meeting, hands full, and you remember you need to reschedule tomorrow's appointment and add something to your grocery list. Pulling out your phone, unlocking it, opening multiple apps—it breaks your flow. I wanted something better.
+
+I envisioned an AI that feels like talking to an actual assistant. One that understands context, remembers our conversation, and takes real action—creating calendar events, managing tasks, looking things up—all through natural speech.
+
+**That vision became Lyra.**
+
+What started as a weekend experiment evolved into a full-fledged multi-agent system. The name "Lyra" comes from the constellation—a guide in the night sky, just as this assistant guides through daily chaos.
+
 ---
 
 ## Overview
@@ -63,8 +81,14 @@ The system seamlessly integrates voice-to-voice interaction with Google Calendar
 ## Architecture
 
 <div align="center">
-<img src="archiv/pictures/Swift_design.jpg" alt="System Architecture" width="600">
+
+| Backend Architecture | iOS Companion App |
+|:-------------------:|:-----------------:|
+| *See diagram below* | <img src="archiv/pictures/Swift_design.jpg" alt="Swift iOS App" width="150"> |
+
 </div>
+
+The iOS app connects to the Python backend via WebSocket, enabling real-time voice streaming. The Swift codebase is available upon request for collaboration or review purposes.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
