@@ -6,56 +6,56 @@ from tools.context_manager import ContextManager
 from typing import Optional
 import datetime
 
-# Initialisiere den TaskManager
+# Initialize the TaskManager
 task_manager = TaskManager()
 context_manager = ContextManager()
 
 @function_tool
 def create_todo(todo: TodoDetails) -> str:
     """
-    Erstellt eine neue To-Do-Aufgabe.
+    Creates a new to-do task.
     """
     return task_manager.create_todo(todo)
 
 @function_tool
 def modify_todo(params: ModifyTodoParams) -> str:
     """
-    Modifiziert eine bestehende To-Do-Aufgabe.
+    Modifies an existing to-do task.
     """
     return task_manager.modify_todo(params)
 
 @function_tool
 def delete_todo(params: DeleteTodoParams) -> str:
     """
-    Löscht eine To-Do-Aufgabe.
+    Deletes a to-do task.
     """
     return task_manager.delete_todo(params)
 
 @function_tool
 def list_todos(params: TaskListParams) -> str:
     """
-    Listet alle Aufgaben in einer bestimmten Aufgabenliste auf.
+    Lists all tasks in a specific task list.
     """
     return task_manager.list_todos(params)
 
 @function_tool
 def create_tasklist(title: str) -> str:
     """
-    Erstellt eine neue Aufgabenliste.
+    Creates a new task list.
     """
     return task_manager.create_tasklist(title)
 
 @function_tool
 def delete_tasklist(tasklist_id: str) -> str:
     """
-    Löscht eine Aufgabenliste.
+    Deletes a task list by its ID.
     """
     return task_manager.delete_tasklist(tasklist_id)
 
 @function_tool
 def list_tasklists() -> str:
     """
-    Listet alle vorhandenen Aufgabenlisten auf.
+    Lists all existing task lists.
     """
     return task_manager.list_tasklists()
 

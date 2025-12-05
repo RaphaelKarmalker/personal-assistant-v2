@@ -13,45 +13,48 @@ import os
 
 class HandoffAgentSystem:
     def __init__(self, debug_time: bool = False):
+        # Initialize context manager and text-to-speech converter
         self.context_manager = ContextManager()
         self.converter = Converter()
         self.timestamps = {}
         self.debug_time = debug_time
 
+        # Define the coordinator agent with specific instructions and tools
         self.coordinator_agent = Agent(
             name="Coordinator Agent",
             instructions=(
-                #"if neccesarry hand off to the appropriate specialized agent: To-Do, or Appointment. "
-                #"Always consider the previous context when processing the current input. "
-                "Versuch die Antworten kurz zu halten."
-                #"Respond in a form that can be naturally read aloud by a voice assistant." 
-                #"Do not use bullet points, headings, or formatting. If retrieving data via web search, summarize the key points in a conversational, natural tone without copying list structures."
-
+                "Try to keep responses concise."
             ),
             handoffs=[todo_agent, appointment_agent],
             tools=[WebSearchTool()]
         )
 
     async def run(self, audio_input: Union[str, bytes]):
+        # Record the start timestamp
         self.timestamps["start"] = time.time()
         audio_input, temp_path = self.prepare_audio_input(audio_input)
         try:
+            # Convert speech to text
             user_input = self.speech_to_text(audio_input)
-            #user_input = input("")
 
+            # Exit condition for the agent
             if user_input.lower() in ["exit", "quit"]:
-                print("Handoff Agent beendet. Bis bald!")
+                print("Handoff Agent terminated. Goodbye!")
                 return
-                
-            response = await self.run_assistant(user_input)
-            print(f"Ergebnis: {response}")
 
+            # Process the user input and generate a response
+            response = await self.run_assistant(user_input)
+            print(f"Result: {response}")
+
+            # Clean the response for text-to-speech conversion
             cleaned_response = self.clean_for_tts(response)
             audio_response = self.text_to_speech(cleaned_response)
 
+            # Update the context with the new user input and response
             self.update_context(user_input, response)
             self.timestamps["end"] = time.time()
 
+            # Print debug information if enabled
             if self.debug_time:
                 self.print_debug_times()
             if temp_path and os.path.exists(temp_path):
@@ -59,22 +62,25 @@ class HandoffAgentSystem:
             return audio_response
 
         except Exception as e:
-            print(f"Fehler während der Agentenausführung: {e}")
+            print(f"Error during agent execution: {e}")
             return None
 
     def speech_to_text(self, audio_input):
+        # Convert speech input to text
         self.timestamps["stt_start"] = time.time()
         user_input = str(self.converter.speech_to_text(audio_input)) #AUDIO
         self.timestamps["stt_end"] = time.time()
         return user_input
     
     def text_to_speech(self, cleaned_response):
+        # Convert text response to speech
         self.timestamps["tts_start"] = time.time()
         audio_response = self.converter.text_to_speech(cleaned_response)
         self.timestamps["tts_end"] = time.time()
         return audio_response
 
     async def run_assistant(self, user_input):
+        # Run the assistant agent with the given user input
         context_summary = self.context_manager.get_context_summary()
         full_input = f"History: {context_summary}\n\nNew Input: {user_input}"
 
@@ -84,37 +90,39 @@ class HandoffAgentSystem:
         return result.final_output
 
     def update_context(self, user_input, assistant_response):
+        # Update the context manager with new user input and assistant response
         self.context_manager.update_context("User", user_input)
         self.context_manager.update_context("Assistant", assistant_response)
 
     def print_debug_times(self):
-        print("\n⏱️ Zeitübersicht:")
+        # Print the timing information for debugging
+        print("\n⏱️ Timing Overview:")
         def duration(label, start, end):
             return f"{label:<20} → {timedelta(seconds=self.timestamps[end] - self.timestamps[start])}"
 
         print(duration("Speech-to-Text", "stt_start", "stt_end"))
-        print(duration("Agentenlauf", "agent_start", "agent_end"))
+        print(duration("Agent Run", "agent_start", "agent_end"))
         print(duration("Text-to-Speech", "tts_start", "tts_end"))
 
         total_time = self.timestamps["end"] - self.timestamps["start"]
-        print(f"\n🕒 Gesamtdauer: {timedelta(seconds=total_time)}")
+        print(f"\n🕒 Total Duration: {timedelta(seconds=total_time)}")
     
 
     def clean_for_tts(self, text):
-        # Ersetze jeden ganzen Satz, der einen https-Link enthält, durch "Auftrag erledigt!"
-        text = re.sub(r"[^.!?]*https?://[^\s\)]+[^.!?]*[.!?]", " Auftrag erledigt!", text)
+        # Replace any complete sentence containing an https link with "Task completed!"
+        text = re.sub(r"[^.!?]*https?://[^\s\)]+[^.!?]*[.!?]", " Task completed!", text)
 
-        # Entferne Markdown, Bulletpoints, Klammern etc.
-        text = re.sub(r"\*\*|__|\*", "", text)                    # Markdown-Fett
-        text = re.sub(r"\n\s*[-•]\s*", " ", text)                 # Listenpunkte
-        text = re.sub(r"\([^)]*\)", "", text)                     # Inhalte in Klammern
-        text = re.sub(r"\s+", " ", text)                          # Mehrfache Leerzeichen
+        # Remove Markdown, bullet points, parentheses, etc.
+        text = re.sub(r"\*\*|__|\*", "", text)                    # Markdown bold
+        text = re.sub(r"\n\s*[-•]\s*", " ", text)                 # List items
+        text = re.sub(r"\([^)]*\)", "", text)                     # Content in parentheses
+        text = re.sub(r"\s+", " ", text)                          # Multiple spaces
         return text.strip()
 
     def prepare_audio_input(self, audio_input: Union[str, bytes]) -> tuple[str, Union[str, None]]:
         """
-        Wandelt Bytes in eine temporäre Datei um und gibt den Pfad zurück.
-        Gibt außerdem den temporären Pfad zurück, damit er ggf. gelöscht werden kann.
+        Convert bytes to a temporary file and return the path.
+        Also returns the temporary path for potential deletion.
         """
         if isinstance(audio_input, bytes):
             temp_path = "temp_input.wav"
@@ -126,7 +134,7 @@ class HandoffAgentSystem:
 
 
 
-# Starte die asynchrone Schleife
+# Start the asynchronous loop
 if __name__ == "__main__":
     agent_system = HandoffAgentSystem(debug_time=True)
     asyncio.run(agent_system.run("test_audio.wav"))

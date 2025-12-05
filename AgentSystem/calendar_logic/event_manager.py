@@ -7,14 +7,16 @@ from datetime import datetime
 
 class EventManager:
     def __init__(self):
+        # Authenticate and initialize the Google Calendar service
         self.service = Authenticator.authenticate("event")
 
     def modify_event(self, params: ModifyEventParams) -> str:
         try:
+            # Format the start and end times for the event search
             start_time = params.start_time + "Z"
             end_time = params.end_time + "Z"
 
-            # Suche nach dem passenden Ereignis
+            # Search for the matching event
             events_result = self.service.events().list(
                 calendarId='primary',
                 timeMin=start_time,
@@ -27,7 +29,7 @@ class EventManager:
 
             for event in events:
                 if params.search_name.lower() in event.get("summary", "").lower():
-                    # Event gefunden: Aktualisierung vorbereiten
+                    # Event found: Prepare for update
                     updated_event = event.copy()
 
                     if params.new_summary:
@@ -52,7 +54,7 @@ class EventManager:
                     if params.new_color_id:
                         updated_event['colorId'] = str(params.new_color_id)
 
-                    # Aktualisiere das Event im Kalender
+                    # Update the event in Google Calendar
                     updated_event = self.service.events().update(
                         calendarId='primary',
                         eventId=event['id'],
@@ -60,33 +62,33 @@ class EventManager:
                         sendUpdates='all'
                     ).execute()
 
-                    return f"Ereignis '{updated_event['summary']}' erfolgreich aktualisiert: {updated_event.get('htmlLink')}"
+                    return f"Event '{updated_event['summary']}' updated successfully."
 
-            return "Kein passendes Ereignis gefunden."
+            return "No matching event found."
         except HttpError as error:
-            return f"Fehler beim Ändern des Ereignisses: {error}"
+            return f"Error while modifying the event: {error}"
 
     def get_current_time(self, format: Optional[str] = None) -> str:
         """
-        Gibt das aktuelle Datum und die Uhrzeit zurück.
+        Returns the current date and time.
         
         Args:
-            format: Format des Datums und der Uhrzeit im strftime-Stil. 
-                    Beispiel: "%Y-%m-%d %H:%M:%S" (Datum und Uhrzeit).
+            format: Format of the date and time in strftime style. 
+                    Example: "%Y-%m-%d %H:%M:%S" (date and time).
         
         Returns:
-            Die aktuelle Uhrzeit oder das Datum im angegebenen Format.
+            The current time or date in the specified format.
         """
         try:
-            # Wenn kein Format angegeben ist, verwende Standardformat für Datum und Uhrzeit
+            # If no format is specified, use the default format for date and time
             if format is None or format.strip() == "":
                 format = "%Y-%m-%d %H:%M:%S"
             current_date = datetime.datetime.now().strftime(format)
             #print(current_date)
             return current_date
         except Exception as e:
-            #print(f"Fehler beim Formatieren der Uhrzeit: {str(e)}")
-            return f"Fehler beim Formatieren der Uhrzeit: {str(e)}"
+            #print(f"Error formatting the time: {str(e)}")
+            return f"Error formatting the time: {str(e)}"
         
 
 
@@ -111,9 +113,9 @@ class EventManager:
                 sendUpdates='all'
             ).execute()
 
-            return f"Ereignis erfolgreich erstellt: {created_event.get('htmlLink')}"
+            return f"Event created successfully: {created_event.get('htmlLink')}"
         except HttpError as error:
-            return f"Fehler beim Erstellen des Ereignisses: {error}"
+            return f"Error creating the event: {error}"
 
     def list_events(self, params: EventListParams) -> str:
 
@@ -134,12 +136,12 @@ class EventManager:
             events = events_result.get("items", [])
 
             if not events:
-                return "Keine Ereignisse gefunden."
+                return "No events found."
 
             event_list = [f"- {event['start'].get('dateTime', event['start'].get('date'))} | {event['summary']}" for event in events]
             return "\n".join(event_list)
         except HttpError as error:
-            return f"Fehler beim Abrufen der Ereignisse: {error}"
+            return f"Error retrieving events: {error}"
 
     def delete_event(self, params: DeleteEventParams) -> str:
 
@@ -160,7 +162,7 @@ class EventManager:
             for event in events:
                 if params.search_name.lower() in event.get("summary", "").lower():
                     self.service.events().delete(calendarId='primary', eventId=event['id'], sendUpdates='all').execute()
-                    return f"Ereignis '{event['summary']}' erfolgreich gelöscht."
-            return "Kein passendes Ereignis gefunden."
+                    return f"Event '{event['summary']}' deleted successfully."
+            return "No matching event found."
         except HttpError as error:
-            return f"Fehler beim Löschen des Ereignisses: {error}"
+            return f"Error deleting the event: {error}"

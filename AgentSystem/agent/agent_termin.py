@@ -6,61 +6,48 @@ from tools.context_manager import ContextManager
 from typing import Optional
 import datetime
 
-# Initialisiere den EventManager
+# Initialize the EventManager
 event_manager = EventManager()
 context_manager = ContextManager()
 
 @function_tool
 def create_final_event(event: EventDetails) -> str:
     """
-    Erstellt ein neues Ereignis im Google Kalender. Darauf achten das aktuelle Datum als Referenz zu verwenden!
+    Creates a new event in Google Calendar. Ensure the current date is used as a reference.
     """
     return event_manager.create_final_event(event)
 
 @function_tool
 def modify_existing_event(params: ModifyEventParams) -> str:
     """
-    Ändert ein bestehendes Ereignis im Google Kalender basierend auf einem Suchbegriff im Titel und einem Zeitraum.
+    Modifies an existing event in Google Calendar based on a search term in the title and a time range.
     """
     return event_manager.modify_event(params)
 
 @function_tool
 def delete_event(params: DeleteEventParams) -> str:
     """
-    Löscht ein Ereignis im Google Kalender basierend auf einem Suchbegriff im Titel und einem Zeitraum.
+    Deletes an event in Google Calendar based on a search term in the title and a time range.
     """
     return event_manager.delete_event(params)
 
 @function_tool
 def list_events(params: EventListParams) -> str:
     """
-    Listet Ereignisse im angegebenen Zeitraum auf, optional gefiltert nach Farbe, Titel und Anzahl.
+    Lists events within a specified time range, optionally filtered by color, title, and count.
     """
-
     return event_manager.list_events(params)
 
 @function_tool
 def get_current_time(format: Optional[str] = None) -> str:
-        """
-        Gibt das aktuelle Datum und die Uhrzeit zurück.
-        
-        Args:
-            format: Format des Datums und der Uhrzeit im strftime-Stil. 
-                    Beispiel: "%Y-%m-%d %H:%M:%S" (Datum und Uhrzeit).
-        
-        Returns:
-            Die aktuelle Uhrzeit oder das Datum im angegebenen Format.
-        """
-        try:
-            # Wenn kein Format angegeben ist, verwende Standardformat für Datum und Uhrzeit
-            if format is None or format.strip() == "":
-                format = "%Y-%m-%d %H:%M:%S"
-            current_date = datetime.datetime.now().strftime(format)
-            #print(current_date)
-            return current_date
-        except Exception as e:
-            #print(f"Fehler beim Formatieren der Uhrzeit: {str(e)}")
-            return f"Fehler beim Formatieren der Uhrzeit: {str(e)}"
+    """
+    Returns the current date and time.
+
+    Args:
+        format: The format of the date and time in strftime style.
+                Example: "%Y-%m-%d %H:%M:%S" (date and time).
+    """
+    return datetime.datetime.now().strftime(format) if format else str(datetime.datetime.now())
 
 appointment_agent = Agent(
     name="Termin Agent",

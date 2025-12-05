@@ -1,7 +1,0 @@
-API Brainstorming
-
--Data Knowledge and web researches
-1) Speech to speech mit websocket communication
-
--Personal assistant
-2) speech inpout with structured output
